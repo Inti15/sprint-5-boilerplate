@@ -71,10 +71,17 @@ var buscarTema = function (e) {
     $listaTemas.html(" ");
     var encontrado = temas.find(function (tema) {
       var resultado = tema.content.toLowerCase().indexOf(temaBuscado) >= 0;
+    // console.log(resultado);
       return resultado;
     });
-    // console.log(encontrado);
-    crearTema(encontrado);//Se manda llamar la función que muestra la tarjeta correspondiente al elemento encontrado
+    console.log(encontrado);
+    if (encontrado == undefined) {
+      // console.log("no existe");
+      cargarTemas();
+      alert("Lo sentimos elemento no encontrado.")
+    }else{
+      crearTema(encontrado);//Se manda llamar la función que muestra la tarjeta correspondiente al elemento encontrado
+    }
   });
 };
 
