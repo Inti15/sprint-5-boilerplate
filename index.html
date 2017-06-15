@@ -9,15 +9,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="utf-8">
     <title> Tu 4-o</title>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body class="grey lighten-2  center">
-    <h2>📝 F O R O 📝</h2>
-    <!-- Sección busqueda/ crear tema -->
-    <section>
+    <div class="navbar-fixed">
+      <nav class="cyan darken-4 ">
+        <div class="nav-wrapper">
+          <h4>📝 F O R O 📝</h4>
+          <!-- Opción buscar tema-->
+          <form id="buscar">
+            <div class="input-field ">
+              <input id="search" type="search" required>
+              <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+        <div class="nav-content">
+          <!-- Opción agregar tema -->
+          <a  class="btn-floating btn-large halfway-fab waves-effect waves-light teal" href="#verModal">
+            <i class="material-icons">add</i>
+          </a>
+        </div>
+      </nav>
+    </div>
+    <!-- Modal -->
+    <div id="verModal" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <form id="formAgregar"class="col s12">
+          <div class="row">
+            <div class="input-field">
+              <input id="temaTitulo" type="text" class="validate">
+              <label for="temaTitulo">Tema</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field ">
+              <input id="inputAutor" type="text" class="validate">
+              <label for="inputAutor">Autor</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="textArea" class="materialize-textarea"></textarea>
+              <label for="textArea">Contenido</label>
+            </div>
+          </div>
+          <div class="row">
+            <button type="submit"  class="btn waves-effect waves-light   modal-action waves-effect waves-blue btn-flat">
+              Agregar
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <!-- <a href="" class="modal-action modal-close waves-effect waves-blue btn-flat">Agregar</a> -->
 
-    </section>
+    </div>
+  </div>
+
     <!-- Sección Temas -->
-    <section >
+    <section class="container">
       <ul id="listaTemas" class="collection container">
         <li class="collection-item avatar center">
           <i class="material-icons circle purple-text">perm_identity</i>
@@ -30,9 +85,10 @@
 
     </section>
     <!-- jQuery -->
+    <!-- <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
     <script type="text/javascript" src="js/materialize.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/main.js"></script>

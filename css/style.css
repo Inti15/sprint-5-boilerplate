@@ -1,9 +1,7 @@
-.pokemon{
-  width: 20%;
-  display: inline-block;
-  margin-right: 5%;
+#listaTemas{
+  margin-top: 15%;
 }
 
-/*img{
-  width: 25%;
-}*/
+#buscar{
+  float: left;
+}
