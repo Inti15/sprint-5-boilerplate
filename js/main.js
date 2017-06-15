@@ -15,6 +15,7 @@ var plantillaTema =  '<li data-target="__id__" class="collection-item avatar cen
 var cargarPagina = function () {
   cargarTemas();
   cargarModal();
+  $("#buscar").submit(buscarTema);
   $("#formAgregar").submit(agregarTema);
 };
 
@@ -47,7 +48,7 @@ var crearTema = function (tema){
 };
 
 var agregarTema = function (e) {
-  console.log("agregando Tema");
+  // console.log("agregando Tema");
   e.preventDefault();
   var temaTitulo = $("#temaTitulo").val();
   var autor = $("#inputAutor").val()
@@ -55,14 +56,46 @@ var agregarTema = function (e) {
 
   //petición AJAX
   $.post(api.url,{
-    content: contenido,
+    content: temaTitulo,
     author_name: autor
   },function (tema) {
-    console.log(temaTitulo + "/" + autor + "/" + contenido);
+    // console.log(temaTitulo + "/" + autor + "/" + contenido);
     $("#verModal").modal("close");
     cargarTemas();
   });
+};
 
+var buscarTema = function (e) {
+  e.preventDefault();
+  var temaBuscado = $("#search").val().toLowerCase();
+  // var temasFiltrados = api.url
+  //
+  $.getJSON(api.url, function (temas) {
+    $listaTemas.html(" ");
+    var encontrado = temas.find(function (tema) {
+      var resultado = tema.content.toLowerCase().indexOf(temaBuscado) >= 0;
+      console.log(resultado);
+      return resultado;
+    });
+    console.log(encontrado);
+    crearTema(encontrado);
+  });
+  
+  // $.getJSON(api.url, function (temas) {
+  //   $listaTemas.html(" ");//Limpia la lista del html para mostrar el elemento buscado
+  //   temas.forEach(function (tema) {
+  //     var tema = tema.content;
+  //     // console.log(tema);
+  //     if (tema === temaBuscado) {
+  //       console.log("encontrado");
+  //     }
+  //     else{
+  //     console.log("no existe");
+  //     }
+  //   });
+  // });
+
+// crearTema();
 };
 
 $(document).ready(cargarPagina);
