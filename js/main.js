@@ -32,29 +32,26 @@ var cargarTemas = function () {
 
 var crearTema = function (tema){
   //Se obtienen las propiedades de cada objeto
-  // console.log(tema);
   var idTema = tema.id;
   var tituloTema = tema.content;
   var autor = tema.author_name;
   var numRespuestas = tema.responses_count;
-  // console.log(tituloTema+ " " + autor + " " + numRespuestas);
 
   //Se Remplazan valores en la plantillaTarjeta
   var tarjetaTema = "";
   tarjetaTema += plantillaTema.replace('__id__',idTema).replace('__tituloTema__',tituloTema).replace('__autor__',autor).replace('__numRespuestas__',numRespuestas);
-  // console.log(tarjetaTema);
+
   // Se agregan las tarjetas a la listaTemas
   $listaTemas.append(tarjetaTema);
 };
 
 var agregarTema = function (e) {
-  // console.log("agregando Tema");
   e.preventDefault();
   var temaTitulo = $("#temaTitulo").val();
   var autor = $("#inputAutor").val()
   var contenido = $("#textArea").val();
 
-  //petición AJAX
+  //petición AJAX para agregar los temas creados
   $.post(api.url,{
     content: temaTitulo,
     author_name: autor
@@ -68,34 +65,17 @@ var agregarTema = function (e) {
 var buscarTema = function (e) {
   e.preventDefault();
   var temaBuscado = $("#search").val().toLowerCase();
-  // var temasFiltrados = api.url
-  //
+
+  // Petición al servidor para obtener el elemento encontrado
   $.getJSON(api.url, function (temas) {
     $listaTemas.html(" ");
     var encontrado = temas.find(function (tema) {
       var resultado = tema.content.toLowerCase().indexOf(temaBuscado) >= 0;
-      console.log(resultado);
       return resultado;
     });
-    console.log(encontrado);
-    crearTema(encontrado);
+    // console.log(encontrado);
+    crearTema(encontrado);//Se manda llamar la función que muestra la tarjeta correspondiente al elemento encontrado
   });
-  
-  // $.getJSON(api.url, function (temas) {
-  //   $listaTemas.html(" ");//Limpia la lista del html para mostrar el elemento buscado
-  //   temas.forEach(function (tema) {
-  //     var tema = tema.content;
-  //     // console.log(tema);
-  //     if (tema === temaBuscado) {
-  //       console.log("encontrado");
-  //     }
-  //     else{
-  //     console.log("no existe");
-  //     }
-  //   });
-  // });
-
-// crearTema();
 };
 
 $(document).ready(cargarPagina);
